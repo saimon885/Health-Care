@@ -1,8 +1,9 @@
+import Link from "next/link";
 import React from "react";
 import { FaLongArrowAltRight } from "react-icons/fa";
 
 const ServicesCard = ({ service }) => {
-  const { name, description, price_per_hour, image } = service;
+  const { name, description, price_per_hour, image, _id } = service;
 
   // Shorten description to ~80 characters
   const shortDesc =
@@ -16,9 +17,11 @@ const ServicesCard = ({ service }) => {
         <p className="text-gray-600 mb-4 flex-1">{shortDesc}</p>
         <div className="flex items-center justify-between mt-auto">
           <span className="text-lg font-semibold text-blue-600">
-            ${Math.ceil(price_per_hour / 100)}/hr
+            ৳{price_per_hour}/hr
           </span>
-          <button className="btn btn-outline btn-sm">Details <FaLongArrowAltRight /></button>
+          <Link href={`/services/${_id}`} className="btn btn-outline btn-sm">
+            Details <FaLongArrowAltRight />
+          </Link>
           <button className="btn bg-gradient-to-r from-primary to-secondary text-white font-medium shadow-lg hover:scale-105 transform transition btn-sm">
             Book Now
           </button>
