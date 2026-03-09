@@ -1,59 +1,73 @@
 import { getSingleService } from "@/app/action/server/service";
 import BookNowBtn from "@/Components/Buttons/BookNowBtn";
+import ClientReview from "@/Components/Pages/ClientReview";
+import { FaStar, FaRegStar, FaUserCircle } from "react-icons/fa";
+import { MdOutlineRateReview } from "react-icons/md";
 
 const page = async ({ params }) => {
   const { id } = await params;
-
   const service = await getSingleService(id);
-  // console.log(service, id);
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
-      <div className="grid lg:grid-cols-2 gap-10 items-start">
-        {/* Image */}
-        <div className="relative w-full h-[400px]  rounded-xl overflow-hidden shadow-lg">
+      <div className="grid lg:grid-cols-2 gap-10 items-start mb-20">
+        {/* Image Section */}
+        <div className="relative w-full h-[450px] rounded-2xl overflow-hidden shadow-2xl group">
           <img
             src={service?.image}
             alt={service?.name}
-            className="object-cover mx-auto "
+            className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
           />
+          <div className="absolute top-4 left-4">
+            <span className="badge badge-primary p-3 font-semibold shadow-md">
+              Top Rated
+            </span>
+          </div>
         </div>
 
-        {/* Content */}
-        <div className="space-y-4">
-          <h1 className="text-4xl font-bold text-gray-800">{service?.name}</h1>
+        {/* Content Section */}
+        <div className="space-y-6">
+          <h1 className="text-4xl font-extrabold text-slate-800 tracking-tight">
+            {service?.name}
+          </h1>
 
-          <p className="text-gray-600 leading-relaxed">
+          <p className="text-gray-600 text-lg leading-relaxed">
             {service?.description}
           </p>
 
-          {/* price */}
-          <div className="flex items-center gap-3">
-            <span className="text-3xl font-bold text-primary">
+          <div className="flex items-center gap-3 bg-primary/5 w-fit px-4 py-2 rounded-lg">
+            <span className="text-4xl font-black text-primary">
               ৳{service?.price_per_hour}
             </span>
-            <span className="text-gray-500">/ hour</span>
+            <span className="text-slate-500 font-medium text-lg">/ hour</span>
           </div>
 
-          {/* features */}
-          <div className="bg-base-200 rounded-xl p-5 space-y-3">
-            <h3 className="font-semibold text-lg">Service Features</h3>
+          <div className="bg-slate-50 border border-slate-100 rounded-2xl p-6 space-y-4">
+            <h3 className="font-bold text-xl flex items-center gap-2">
+              <MdOutlineRateReview className="text-primary" /> Service Features
+            </h3>
 
-            <ul className="space-y-2 text-gray-600">
-              <li>✔ Professional trained caregiver</li>
-              <li>✔ Background verified staff</li>
-              <li>✔ Flexible hourly booking</li>
-              <li>✔ Emergency support available</li>
-              <li>✔ Safe & reliable service</li>
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-slate-700">
+              <li className="flex items-center gap-2">
+                ✔ Professional caregiver
+              </li>
+              <li className="flex items-center gap-2">✔ Background verified</li>
+              <li className="flex items-center gap-2">✔ Flexible hours</li>
+              <li className="flex items-center gap-2">✔ Emergency support</li>
+              <li className="flex items-center gap-2">✔ Safe & reliable</li>
+              <li className="flex items-center gap-2">✔ 24/7 Monitoring</li>
             </ul>
           </div>
 
-          {/* action buttons */}
-
-          <div className="flex gap-4 pt-4">
-            <BookNowBtn id={service?._id}></BookNowBtn>
+          <div className="pt-4">
+            <BookNowBtn id={service?._id} />
           </div>
         </div>
       </div>
+
+      <hr className="border-slate-100 mb-16" />
+
+      <ClientReview service={service}></ClientReview>
     </div>
   );
 };

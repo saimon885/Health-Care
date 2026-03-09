@@ -1,5 +1,6 @@
 "use client";
 import { CreateUser } from "@/app/action/server/auth";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -8,7 +9,7 @@ import Swal from "sweetalert2";
 
 const RegisterCard = () => {
   const [show, setShow] = useState(false);
-  const router = useRouter()
+  const router = useRouter();
   const handlesubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -40,26 +41,46 @@ const RegisterCard = () => {
       if (result?.acknowledged) {
         Swal.fire({
           title: "Registration Successful 🎉",
-          text: "Your account has been created successfully. You can now start using our care services.",
+          text: "Welcome! Your account is ready. Redirecting you to the dashboard...",
           icon: "success",
-          confirmButtonText: "Continue",
-          confirmButtonColor: "#3b82f6",
           background: "#ffffff",
           color: "#1f2937",
-          iconColor: "#3b82f6",
-          timer: 2500,
+          iconColor: "#10b981",
+          timer: 2000,
           timerProgressBar: true,
           showConfirmButton: false,
-        }).then(() => {
-          router.push("/login");
+          allowOutsideClick: false,
+        }).then(async () => {
+          const loginResponse = await signIn("credentials", {
+            email,
+            password,
+            redirect: false,
+          });
+
+          if (loginResponse?.ok) {
+            router.push("/");
+            router.refresh();
+          } else {
+            router.push("/login");
+          }
         });
       } else {
         Swal.fire({
-          title: "Already Account Is Created.. please LogIn!",
-          icon: "error",
-          timer: 2500,
-          timerProgressBar: true,
-          showConfirmButton: false,
+          title: "Account Already Exists",
+          text: "It looks like you already have an account with this email. Please log in instead.",
+          icon: "warning",
+          background: "#ffffff",
+          color: "#1f2937",
+          iconColor: "#f59e0b",
+          showCancelButton: true,
+          confirmButtonText: "Go to Login",
+          confirmButtonColor: "#3b82f6",
+          cancelButtonText: "Close",
+          cancelButtonColor: "#9ca3af",
+        }).then((res) => {
+          if (res.isConfirmed) {
+            router.push("/login");
+          }
         });
       }
     }
