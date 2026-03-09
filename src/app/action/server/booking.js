@@ -2,6 +2,7 @@
 
 import { authOptions } from "@/lib/AuthOptions";
 import { Collections, dbConnect } from "@/lib/dbConnect";
+import { ObjectId } from "mongodb";
 import { getServerSession } from "next-auth";
 
 export const createBooking = async ({ bookingData }) => {
@@ -47,4 +48,27 @@ export const getmyBooking = async () => {
   }));
 
   return Getbook;
+};
+
+export const UpdateBooking = async (id) => {
+  const { user } = (await getServerSession(authOptions)) || {};
+  if (!user) return { success: false };
+  const query = { _id: new ObjectId(id) };
+  const updatedata = {
+    $set: {
+      status: "cancelled",
+    },
+  };
+  const result = await dbConnect(Collections.Booking).updateOne(
+    query,
+    updatedata,
+  );
+  return { scuccess: result.modifiedCount > 0 };
+};
+export const DeleteBooking = async (id) => {
+  const { user } = (await getServerSession(authOptions)) || {};
+  if (!user) return { success: false };
+  const query = { _id: new ObjectId(id) };
+  const result = await dbConnect(Collections.Booking).deleteOne(query);
+  return { scuccess: result.deletedCount };
 };

@@ -19,7 +19,7 @@ const page = async ({ params }) => {
         </div>
 
         {/* Content */}
-        <div className="space-y-6">
+        <div className="space-y-4">
           <h1 className="text-4xl font-bold text-gray-800">{service?.name}</h1>
 
           <p className="text-gray-600 leading-relaxed">
@@ -51,8 +51,6 @@ const page = async ({ params }) => {
 
           <div className="flex gap-4 pt-4">
             <BookNowBtn id={service?._id}></BookNowBtn>
-
-            <button className="btn btn-outline">Contact Provider</button>
           </div>
         </div>
       </div>

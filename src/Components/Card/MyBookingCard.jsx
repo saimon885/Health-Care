@@ -1,4 +1,5 @@
 import React from "react";
+import CancelBooking from "../Buttons/CancelBooking";
 
 const MyBookingCard = ({ book }) => {
   const {
@@ -12,6 +13,7 @@ const MyBookingCard = ({ book }) => {
     email,
     status,
     createdAt,
+    _id,
   } = book;
 
   const statusStyles = {
@@ -46,7 +48,7 @@ const MyBookingCard = ({ book }) => {
           <span className="font-medium">Email:</span> {email}
         </p>
         <p>
-          <span className="font-medium">Total Cost:</span> ৳ { totalCost}
+          <span className="font-medium">Total Cost:</span> ৳ {totalCost}
         </p>
         <p>
           <span className="font-medium">Booking Date:</span>{" "}
@@ -55,17 +57,16 @@ const MyBookingCard = ({ book }) => {
       </div>
 
       <div className="mt-4 flex justify-end">
+        <CancelBooking book={book}></CancelBooking>
+
         {status === "pending" && (
-          <button className="btn btn-sm btn-primary">Pay Now</button>
+          <button className="btn btn-sm bg-gradient-to-r from-primary to-secondary text-white font-medium shadow-lg  transform transition">
+            Pay Now
+          </button>
         )}
         {status === "completed" && (
           <button className="btn btn-sm btn-success" disabled>
             Completed
-          </button>
-        )}
-        {status === "cancelled" && (
-          <button className="btn btn-sm btn-error" disabled>
-            Cancelled
           </button>
         )}
       </div>

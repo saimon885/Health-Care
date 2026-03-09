@@ -1,4 +1,5 @@
 "use client";
+import { IoExitOutline } from "react-icons/io5";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import Swal from "sweetalert2";
@@ -25,6 +26,7 @@ const AuthButton = () => {
           className="btn bg-gradient-to-r from-primary to-secondary text-white font-medium shadow-lg  transform transition"
         >
           LogOut
+          <IoExitOutline size={20} />
         </div>
       ) : (
         <Link

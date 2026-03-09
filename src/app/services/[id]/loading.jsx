@@ -27,7 +27,7 @@ const loading = () => {
 
           <div className="flex gap-4 pt-4">
             <div className="h-12 w-32 bg-gray-300 rounded"></div>
-            <div className="h-12 w-32 bg-gray-300 rounded"></div>
+            
           </div>
         </div>
       </div>

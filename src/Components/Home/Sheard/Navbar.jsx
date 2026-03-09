@@ -42,7 +42,7 @@ const Navbar = () => {
           : "bg-base-100 border-b border-transparent"
       }`}
     >
-      <div className="navbar max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="navbar mx-auto px-4 sm:px-0">
         <div className="navbar-start">
           <div className="dropdown">
             <div

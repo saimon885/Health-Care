@@ -19,12 +19,12 @@ const ServicesCard = ({ service }) => {
           <span className="text-lg font-semibold text-blue-600">
             ৳{price_per_hour}/hr
           </span>
-          <Link href={`/services/${_id}`} className="btn btn-outline btn-sm">
+          <Link
+            href={`/services/${_id}`}
+            className="btn bg-gradient-to-r from-primary to-secondary text-white font-medium shadow-lg hover:scale-105 transform transition btn-sm"
+          >
             Details <FaLongArrowAltRight />
           </Link>
-          <button className="btn bg-gradient-to-r from-primary to-secondary text-white font-medium shadow-lg hover:scale-105 transform transition btn-sm">
-            Book Now
-          </button>
         </div>
       </div>
     </div>

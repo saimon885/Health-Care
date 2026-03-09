@@ -1,4 +1,5 @@
 "use client";
+import { CiBookmarkCheck } from "react-icons/ci";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
@@ -28,7 +29,14 @@ const BookNowBtn = ({ id }) => {
           isLoading ? "opacity-50 cursor-not-allowed" : ""
         }`}
       >
-        {isLoading ? "Checking..." : "Book Now"}
+        {isLoading ? (
+          "Checking..."
+        ) : (
+          <>
+            Book Now
+            <CiBookmarkCheck size={20} />
+          </>
+        )}
       </button>
     </div>
   );

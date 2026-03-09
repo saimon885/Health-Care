@@ -3,9 +3,10 @@ import React, { useState, useEffect } from "react";
 import divisionDataJson from "../../data/district.json";
 import { useForm, useWatch } from "react-hook-form";
 import { createBooking } from "@/app/action/server/booking";
+import Swal from "sweetalert2";
 
 const BookingPage = ({ booking }) => {
-  const { register, control, handleSubmit } = useForm();
+  const { register, control, handleSubmit, reset } = useForm();
   const [totalCost, setTotalCost] = useState(0);
 
   const serviceCenter = divisionDataJson;
@@ -61,9 +62,20 @@ const BookingPage = ({ booking }) => {
     const result = await createBooking({ bookingData });
 
     if (result.success) {
-      alert("Booking added successfully");
+      Swal.fire({
+        title: "Success!",
+        text: "Booking added successfully",
+        icon: "success",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "ok!",
+      }).then(reset());
     } else {
-      console.log("Error creating booking");
+      Swal.fire({
+        title: "Error!",
+        text: "Something went wrong while creating the booking.",
+        icon: "error",
+        confirmButtonText: "Try Again",
+      });
     }
   };
 
@@ -82,6 +94,7 @@ const BookingPage = ({ booking }) => {
             {...register("duration", { required: true })}
           >
             <option value="">Select Hours / Days</option>
+            <option>1 Hours</option>
             <option>2 Hours</option>
             <option>4 Hours</option>
             <option>6 Hours</option>
@@ -160,7 +173,10 @@ const BookingPage = ({ booking }) => {
           <p className="text-lg font-bold text-primary">{totalCost} Tk</p>
         </div>
 
-        <button type="submit" className="btn btn-primary w-full">
+        <button
+          type="submit"
+          className="btn bg-gradient-to-r from-primary to-secondary text-white font-medium shadow-lg  transform transition w-full"
+        >
           Confirm Booking
         </button>
       </form>
