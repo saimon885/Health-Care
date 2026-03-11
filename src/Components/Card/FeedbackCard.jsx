@@ -20,7 +20,7 @@ const FeedbackCard = () => {
         const data = await GetFeedback();
         setFeedbacks(data || []);
       } catch (error) {
-        console.error(error);
+        // console.error(error);
       } finally {
         setLoading(false);
       }
@@ -64,9 +64,9 @@ const FeedbackCard = () => {
           className="mySwiper !pb-14"
         >
           {feedbacks.map((item) => {
-            if (!item.payload) return null;
+            if (!item) return null;
 
-            const ratingCount = parseInt(item.payload.rating) || 5;
+            const ratingCount = parseInt(item.rating) || 5;
 
             return (
               <SwiperSlide key={item._id.toString()}>
@@ -91,11 +91,11 @@ const FeedbackCard = () => {
                   </div>
 
                   <h3 className="font-bold text-xl mb-3 text-base-content capitalize">
-                    {item.payload.serviceName}
+                    {item.serviceName}
                   </h3>
 
                   <p className="text-base-content/70 italic leading-relaxed flex-grow">
-                    {item.payload.message}
+                    {item.message}
                   </p>
 
                   <div className="mt-6 pt-6 border-t border-base-300 flex justify-between items-center">
@@ -103,7 +103,7 @@ const FeedbackCard = () => {
                       Verified Review
                     </span>
                     <span className="text-xs text-base-content/50 font-medium">
-                      {new Date(item.payload.submittedAt).toLocaleDateString(
+                      {new Date(item.submittedAt).toLocaleDateString(
                         undefined,
                         {
                           year: "numeric",

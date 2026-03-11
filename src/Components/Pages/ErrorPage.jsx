@@ -1,11 +1,10 @@
-
 import React, { useEffect } from "react";
 import { BiRefresh, BiHomeAlt, BiSupport } from "react-icons/bi";
 import { VscBracketError } from "react-icons/vsc";
 import Link from "next/link";
 const ErrorPage = ({ error, reset }) => {
   useEffect(() => {
-    console.error("Critical Error:", error);
+    // console.error("Critical Error:", error);
   }, [error]);
 
   return (

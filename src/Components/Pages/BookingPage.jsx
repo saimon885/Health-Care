@@ -57,7 +57,7 @@ const BookingPage = ({ booking }) => {
       Service_Name: booking.name,
     };
 
-    console.log("Booking Data:", bookingData);
+    // console.log("Booking Data:", bookingData);
 
     const result = await createBooking({ bookingData });
 

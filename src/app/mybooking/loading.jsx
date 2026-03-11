@@ -25,6 +25,7 @@ const loading = () => {
           <div className="mt-4 flex justify-end space-x-2">
             <div className="h-8 w-20 bg-gray-200 rounded"></div>
             <div className="h-8 w-24 bg-gray-200 rounded"></div>
+            <div className="h-8 w-24 bg-gray-200 rounded"></div>
           </div>
         </div>
       ))}

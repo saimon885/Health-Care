@@ -2,6 +2,7 @@
 import { CreateFeedback } from "@/app/action/server/feedback";
 import React from "react";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const ClientReview = ({ service }) => {
   const {
@@ -24,15 +25,29 @@ const ClientReview = ({ service }) => {
       message: data.message,
       submittedAt: new Date().toISOString(),
     };
+    // console.log(payload);
     const result = await CreateFeedback(payload);
     if (result.success) {
-      alert("comment added");
+      Swal.fire({
+        title: "Success!",
+        text: "Your Feedback has been submitted.",
+        icon: "success",
+        confirmButtonText: "Continue",
+        confirmButtonColor: "#4CAF50",
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      }).then(() => {
+        reset();
+      });
     }
-    // reset();
   };
 
   return (
-    <div className="w-full mt-16">
+    <div className="w-full -mt-8">
       <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
         <div className="grid md:grid-cols-5 gap-0">
           <div className="md:col-span-2 bg-slate-50 p-8 lg:p-12 flex flex-col justify-center">

@@ -9,8 +9,8 @@ const page = async ({ params }) => {
   const service = await getSingleService(id);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12">
-      <div className="grid lg:grid-cols-2 gap-10 items-start mb-20">
+    <div className="max-w-7xl mx-auto px-4 pt-8">
+      <div className="grid lg:grid-cols-2 gap-10 items-start mb-8">
         {/* Image Section */}
         <div className="relative w-full h-[450px] rounded-2xl overflow-hidden shadow-2xl group">
           <img
@@ -26,7 +26,7 @@ const page = async ({ params }) => {
         </div>
 
         {/* Content Section */}
-        <div className="space-y-6">
+        <div className="space-y-4">
           <h1 className="text-4xl font-extrabold text-slate-800 tracking-tight">
             {service?.name}
           </h1>
