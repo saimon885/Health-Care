@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Care.xyz - Baby Sitting & Elderly Care Service Platform 🏥👶👵
 
-## Getting Started
+Care.xyz (Care.IO) is a reliable web application designed to provide trusted care services for children, elderly individuals, and those needing special medical attention at home. The platform bridges the gap between professional caregivers and families, ensuring a secure, easy-to-use, and accessible booking experience.
 
-First, run the development server:
+![Home Page Preview](https://i.ibb.co.com/QjMLMR5P/image.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🌐 Live Demo
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[Check out the Live Site](https://care-app-phi.vercel.app/)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ✨ Key Features
 
-## Learn More
+- **Responsive Design:** Fully optimized for Mobile, Tablet, and Desktop views.
+- **User Authentication:** Secure login via Email/Password and Google Social Login.
+- **Dynamic Booking System:** - Users can select duration (days/hours).
+  - Dynamic location selection (Division, District, City, Area).
+- **Automated Cost Calculation:** Real-time calculation based on duration and service charges.
+- **Personalized Dashboard:** A "My Bookings" page to track status (Pending, Confirmed, Completed, or Cancelled).
+- **Service Specific Pages:** Detailed information for Baby Care, Elderly Service, and Sick People Service.
+- **Security:** Protected private routes for booking and user profile management.
+- **Email Invoices:** Automated email notifications/invoices upon successful booking.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠️ Technologies Used
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Frontend:** React.js, Tailwind CSS, Lucide Icons
+- **Backend/Database:** Firebase Authentication, Firestore/JSON Server (as per implementation)
+- **Deployment:** Vercel
+- **Others:** React Router, Metadata for SEO, Zapshift resources for data.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📖 Pages & Navigation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 🏠 1. Homepage
+
+- **Hero Banner:** Motivational sliders for caregiving.
+- **Mission Section:** Understanding the "Why" behind Care.xyz.
+- **Services Overview:** Quick links to Baby Care, Elderly, and Sick Care.
+- **Testimonials:** User success stories and metrics.
+
+### 📝 2. Service Detail Page (`/service/:id`)
+
+- Comprehensive details about the specific care type.
+- Direct "Book Service" call-to-action.
+
+### 📅 3. Booking Page (Private Route)
+
+- **Dynamic Forms:** Select location and time.
+- **Pricing:** Dynamic cost calculation before confirmation.
+- **Validation:** Ensures all data is accurate before saving.
+
+### 🔐 4. Authentication
+
+- **Registration:** Includes NID validation and strict password requirements (6+ chars, uppercase, and lowercase).
+- **Session Persistence:** Logged-in users stay authenticated even after page reload.
+
+### 📋 5. My Booking Page (Private Route)
+
+- List view of all user bookings with real-time status updates.
+- Options to view details or cancel a pending booking.
+
+### 🚫 6. Error Page (404)
+
+- Custom-designed "Not Found" page with a "Back to Home" button.
+
+---
+
+## 🚀 Installation & Local Setup
+
+To run this project locally, follow these steps:
+
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/saimon885/Health-Care.git](https://github.com/saimon885/Health-Care.git)
+   ```
