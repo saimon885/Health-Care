@@ -8,7 +8,8 @@ import { GetFeedback } from "@/app/action/server/feedback";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { FaQuoteLeft, FaStar } from "react-icons/fa";
+import { FaHeartbeat, FaQuoteLeft, FaStar } from "react-icons/fa";
+import { MdLocalHospital } from "react-icons/md";
 
 const FeedbackCard = () => {
   const [feedbacks, setFeedbacks] = useState([]);
@@ -31,7 +32,30 @@ const FeedbackCard = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-40">
-        <span className="loading loading-dots loading-lg text-primary"></span>
+        {/* Icon Animation */}
+        <div className="relative flex items-center justify-center">
+          <MdLocalHospital className="text-6xl text-primary animate-pulse" />
+
+          <FaHeartbeat className="text-red-500 text-3xl absolute -right-4 -top-2 animate-bounce" />
+        </div>
+
+        {/* Text */}
+        <div className="space-y-2">
+          <h2 className="text-2xl font-semibold text-primary">
+            Preparing Care Services
+          </h2>
+
+          <p className="text-gray-500">
+            Our caregivers are getting things ready for you...
+          </p>
+        </div>
+
+        {/* Loading dots */}
+        <div className="flex gap-2">
+          <span className="w-3 h-3 bg-primary rounded-full animate-bounce"></span>
+          <span className="w-3 h-3 bg-primary rounded-full animate-bounce delay-150"></span>
+          <span className="w-3 h-3 bg-primary rounded-full animate-bounce delay-300"></span>
+        </div>
       </div>
     );
   }

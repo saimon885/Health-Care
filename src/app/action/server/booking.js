@@ -2,6 +2,8 @@
 
 import { authOptions } from "@/lib/AuthOptions";
 import { Collections, dbConnect } from "@/lib/dbConnect";
+import { bookingInvoiceTemplate } from "@/lib/invoiceTemplete";
+import { sendEmail } from "@/lib/SendEmail";
 import { ObjectId } from "mongodb";
 import { getServerSession } from "next-auth";
 import { revalidatePath } from "next/cache";
@@ -17,8 +19,10 @@ export const createBooking = async ({ bookingData }) => {
     totalCost,
     Service_Name,
   } = bookingData;
+
   const { user } = (await getServerSession(authOptions)) || {};
   if (!user) return { success: false };
+
   const newBooking = {
     duration,
     region,
@@ -35,6 +39,28 @@ export const createBooking = async ({ bookingData }) => {
   const createResult = await dbConnect(Collections.Booking).insertOne(
     newBooking,
   );
+
+  if (createResult?.insertedId) {
+    await sendEmail({
+      to: user.email,
+      subject: "Your Booking Invoice - Care.xyz",
+      html: bookingInvoiceTemplate({
+        bookingId: createResult.insertedId.toString(),
+        Service_Name,
+        duration,
+        region,
+        district,
+        upazila,
+        address,
+        totalCost,
+        email: user.email,
+        createdAt: newBooking.createdAt,
+      }),
+    });
+  } else {
+    console.log("data dokche na somossa ace code e");
+  }
+
   return { success: !!createResult.insertedId };
 };
 export const getmyBooking = cache(async () => {
