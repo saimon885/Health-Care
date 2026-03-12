@@ -1,9 +1,36 @@
 import { getSingleService } from "@/app/action/server/service";
 import BookNowBtn from "@/Components/Buttons/BookNowBtn";
 import ClientReview from "@/Components/Pages/ClientReview";
-import { FaStar, FaRegStar, FaUserCircle } from "react-icons/fa";
 import { MdOutlineRateReview } from "react-icons/md";
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+  const service = await getSingleService(id);
 
+  return {
+    title: service?.title || "Details",
+    description: service?.description || "",
+
+    openGraph: {
+      title: service?.title || "Details",
+      description: service?.description || "",
+      images: [
+        {
+          url: service?.image || "https://i.ibb.co.com/Sw0Nj2Z6/image.png ",
+          width: 1200,
+          height: 630,
+          alt: service?.title || "service Image",
+        },
+      ],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: service?.title || "Details",
+      description: service?.description || "",
+      images: [service?.image || "https://i.ibb.co.com/Sw0Nj2Z6/image.png "],
+    },
+  };
+}
 const page = async ({ params }) => {
   const { id } = await params;
   const service = await getSingleService(id);
