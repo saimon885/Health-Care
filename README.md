@@ -30,7 +30,7 @@ Home Care (Care.IO) is a reliable web application designed to provide trusted ca
 
 ## 🛠️ Technologies Used
 
-- **Frontend/Backend/Database:** Next.js, Tailwind CSS, React Icons,Next-Auth,Sweetalert2,MongoDb
+- **Frontend/Backend/Database:** Tailwind CSS, Next.js, Node.js,Express.js,,MongoDb, React Icons,Next-Auth,Sweetalert2
 - **Deployment:** Vercel
 - **Others:** Metadata for SEO
 
